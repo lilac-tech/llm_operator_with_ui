@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>WebSocket Client</title>
+    </head>
+    <link
+        rel="stylesheet"
+        href="css/aurora.css"
+    />
+    <link
+        rel="stylesheet"
+        href="css/button.css"
+    />
+    <link
+        rel="stylesheet"
+        href="css/hover_card.css"
+    />
+    <script
+        type="text/javascript"
+        src="/modules/socket_IO.js"
+    ></script>
+    <script
+        type="text/javascript"
+        src="main_socket.js"
+    ></script>
+    <body>
+        <div style="display: flex; width: 95%">
+            <div
+                class="card"
+                style="float: left; width: 80%"
+            >
+                <textarea
+                    id="messageInput"
+                    id="promptBox"
+                    multiline
+                    class="card promptBox"
+                    ng-keyup="suggestText()"
+                ></textarea>
+            </div>
+            <div
+                class="movableDiv"
+                id="suggest_box_div"
+                style="float: right; width: 20%; padding-left: 2em"
+            >
+                <button
+                    class="hover_card"
+                    id=""
+                >
+                    hello_world
+                </button>
+                <button
+                    class="hover_card"
+                    id=""
+                >
+                    hello
+                </button>
+            </div>
+        </div>
+        <br />
+        <div>
+            <input type="file" id="fileInput" class="input_glower"/>
+        </div>
+        <br />
+        <button
+            class="input_glower"
+            id="SummaryRequesterButton"
+        >
+            Get Summary
+        </button>
+
+        <div>
+            <h2>Settings Menu</h2>
+
+            <label for="no_of_samples">Number of Samples:</label>
+            <input
+                class="input_glower"
+                type="number"
+                id="no_of_samples"
+                value="5"
+            />
+            <br />
+
+            <label for="no_of_gen_toks">Number of Generated Tokens:</label>
+            <input
+                class="input_glower"
+                type="number"
+                id="no_of_gen_toks"
+                value="10"
+            />
+            <br />
+
+            <button class="input_glower" onclick="saveSettings()">Save Settings</button>
+        </div>
+        <label for="Model_repo">
+            <br />Model Repo:
+        </label>
+        <input
+        class="input_glower"
+            type="text"
+            id="Model_repo"
+            value="TheBloke/phi-2-GGUF"
+        />
+        <br />
+        <label for="Model_name">
+            <br />Model Name:
+        </label>
+        <input
+        class="input_glower"
+            type="text"
+            id="Model_name"
+            value="phi-2.Q4_K_M.gguf"
+        />
+        <br />
+        <button class="input_glower" id="LoadModelButton" onclick="loadModel()">Load Model</button>
+        
+    </body>
+</html>

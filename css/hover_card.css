@@ -1,0 +1,52 @@
+/**
+NOTE TO SELF:
+--b => Brightness of the gradient background border
+**/
+.hover_card {
+    --border-radius: 1rem;
+    border: 0;
+    padding: 2em;
+    width: 100%;
+    position: relative;
+    z-index: unset;
+    color: azure;
+    background-color: black;
+    border-radius: var(--border-radius);
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+}
+.hover_card:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius);
+    z-index: -1;
+    background-image: linear-gradient(122.12deg, #166496 0%, #961664 100%);
+    --b: 1.0;
+    filter: brightness(var(--b));
+    transition: all calc(1s / 16 * 4) ease-in-out;
+    --border: 4;
+    --alpha: 0;
+    --gradient: linear-gradient(122.12deg, #166496 0%, #961664 100%);
+    --bg-size: calc(100% + (2px * var(--border)));
+    background: var(--gradient) center center/var(--bg-size) var(--bg-size);
+    border: calc(var(--border) * 1px) solid transparent;
+    -webkit-mask: linear-gradient(
+            hsl(0 0% 100% / var(--alpha)),
+            hsl(0 0% 100% / var(--alpha))
+        ),
+        linear-gradient(white, white);
+    mask: linear-gradient(
+            hsl(0 0% 100% / var(--alpha)),
+            hsl(0 0% 100% / var(--alpha))
+        ),
+        linear-gradient(white, white);
+    -webkit-mask-clip: padding-box, border-box;
+    mask-clip: padding-box, border-box;
+    -webkit-mask-composite: source-in, xor;
+    mask-composite: intersect;
+}
+.hover_card:hover:after {
+    --b: 2.0;
+    isolation: isolate;
+}
